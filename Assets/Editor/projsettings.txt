@@ -1,0 +1,6 @@
+lastUpgrade=00900
+proj.AppId=278001833835
+android.SetupDone=true
+ios.ClientId=278001833835-mopqecsmev7nqri32g29t90c9pdv6412.apps.googleusercontent.com
+ios.BundleId=com.anglerfishgames.KnockitMooses
+ios.SetupDone=true

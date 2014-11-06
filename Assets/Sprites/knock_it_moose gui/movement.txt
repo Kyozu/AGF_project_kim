@@ -1,0 +1,7 @@
+The main menu is above the level select, if you click play the camera pans down showing the levels
+But if you click credits the credits window is below the main menu (you could just draw this over the level select)
+They both have a button pointing up to pan back to main menu
+
+
+the logo wiggles very slowly with a sine wave like:
+Math.sin(frame * speed) * amount;

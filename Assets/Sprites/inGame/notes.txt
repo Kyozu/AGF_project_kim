@@ -1,0 +1,4 @@
+the stretch is identical to the one in level select
+
+the slow motion stuff that's in right now should fit pretty good
+if it turns out bad i can change it
