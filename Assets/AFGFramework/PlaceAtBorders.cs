@@ -6,10 +6,13 @@ public class PlaceAtBorders : MonoBehaviour {
 
     public Camera MainCam;
     public GameObject BorderObject;
+    //the area around which you want to place the object
     public RectTransform areaSize;
     public Vector2 offset;
     public Vector2 startPos;
     public Vector2 randomRange;
+    //the name of the layer for the border objects
+    public string LAYER_NAME;
     Vector2 currentPos;
 
 
@@ -22,7 +25,7 @@ public class PlaceAtBorders : MonoBehaviour {
 				float horzExtent = vertExtent * MainCam.aspect; //Screen.width / Screen.height;
 
 				Vector2 camSize = new Vector2 (MainCam.transform.position.x + horzExtent, MainCam.transform.position.y + vertExtent);
-				string LAYER_NAME = "forestOnTop";
+				//string LAYER_NAME = "trees";
 				Vector2 startingCamPos = new Vector2(MainCam.transform.position.x - horzExtent, MainCam.transform.position.y - vertExtent);
 				currentPos = startingCamPos;//MainCam.ScreenToWorldPoint(startingCamPos);
 				SpriteRenderer tempRend = BorderObject.GetComponent<SpriteRenderer>();
