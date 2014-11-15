@@ -15,7 +15,6 @@ public class MultiplayerMoose : Photon.MonoBehaviour {
 
 		public Slider PointSlider;
 		public bool connected = false;
-		public Text ConnectBtn;
 
 		public int MaxSlider = 0;
 		public int myCurrentPoints = 0;
@@ -30,72 +29,6 @@ public class MultiplayerMoose : Photon.MonoBehaviour {
 
 
 
-	// Update is called once per frame
-	void Update () 
-	{
-
-				if(myCurrentPoints > 0 || enemyCurrentPoints > 0)
-				{
-						MaxSlider = myCurrentPoints + enemyCurrentPoints;
-
-						PointSlider.maxValue = MaxSlider;
-						PointSlider.value = myCurrentPoints;
-
-						myScore.text = "My score: " + myCurrentPoints.ToString();
-						allScore.text = "Total : " + MaxSlider.ToString ();
-				}
-				if (!photonView.isMine)
-				{
-						if(myCurrentPoints > 0 || enemyCurrentPoints > 0)
-						{
-
-								enemyScore.text = "enemy score: " + enemyCurrentPoints.ToString ();
-						}
-				}
-	}
-
-
-		/// <summary>
-		/// The masterclient is the owner of this PhotonView, so it automatically is the WRITER (send)
-		/// Other clients can only READ (receive)
-		/// </summary>
-		/// <param name="stream"></param>
-		/// <param name="info"></param>
-		void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-		{
-				if (stream.isWriting)
-				{
-						//Executed on the owner of the PhotonView; in this case the MasterClient
-						//The server sends it's position over the network
-
-						stream.SendNext((int)myCurrentPoints);//"Encode" it, and send it
-
-						/*
-            stream.SendNext(Input.GetButton ("Jump"));
-            */
-
-				}
-				else
-				{
-						//Executed on the others; in this case the Clients
-						//The clients receive a position and use it
-
-						enemyCurrentPoints += (int)stream.ReceiveNext();
-
-						/*
-            bool jumpBoolean = (bool) stream.ReceiveNext();
-            if(jumpBoolean){
-                Debug.Log(We are jumping");
-            }
-            */
-				}
-		}
-
-		public void addScore()
-		{
-				myCurrentPoints += 10;
-		}
-
 		/*
      * We want this script to automatically connect to Photon and to enter a room.
      * This will help speed up debugging in the next tutorials.
@@ -109,6 +42,36 @@ public class MultiplayerMoose : Photon.MonoBehaviour {
 				PhotonNetwork.ConnectUsingSettings("1.0");
 		}
 
+
+		public void addScore()
+		{
+				myCurrentPoints += 10;
+				myScore.text = "My score: " + myCurrentPoints.ToString();
+				allScore.text = "Total : " + MaxSlider.ToString ();
+
+				MaxSlider = myCurrentPoints + enemyCurrentPoints;
+
+				PointSlider.maxValue = MaxSlider;
+				PointSlider.value = myCurrentPoints;
+
+				CallRemoteMethod (myCurrentPoints);
+		}
+
+		public void CallRemoteMethod(int Score)
+		{
+				GetComponent<PhotonView> ().RPC ("addScoreToRemote", PhotonTargets.Others, new object[] { Score });
+		}
+
+		[RPC]
+		void addScoreToRemote(int score)
+		{
+				enemyCurrentPoints = score;
+				MaxSlider = myCurrentPoints + enemyCurrentPoints;
+
+				PointSlider.maxValue = MaxSlider;
+				PointSlider.value = myCurrentPoints;
+				enemyScore.text = "enemy score: " + enemyCurrentPoints.ToString ();
+		}
 
 		void OnGUI()
 		{
@@ -174,7 +137,7 @@ public class MultiplayerMoose : Photon.MonoBehaviour {
 				//We still didn't join any room: create one
 				if (PhotonNetwork.room == null){
 						string roomName = "TestRoom"+Application.loadedLevelName;
-						PhotonNetwork.CreateRoom(roomName, new RoomOptions() {maxPlayers = 4}, null);
+						PhotonNetwork.CreateRoom(roomName, new RoomOptions() {maxPlayers = 2}, null);
 				}
 		}
 
