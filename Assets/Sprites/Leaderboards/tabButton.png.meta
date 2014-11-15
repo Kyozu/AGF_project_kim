@@ -1,9 +1,8 @@
 fileFormatVersion: 2
-guid: 94a163ba85e804714ada672987e95b54
+guid: b1f76a006d3b74f928f3c288c613ecea
 TextureImporter:
   fileIDToRecycleName:
-    21300000: frame
-    21300002: frame_0
+    21300000: tabButton_0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -27,7 +26,7 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: 1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -45,15 +44,15 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: frame_0
+    - name: tabButton_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 580
-        height: 400
+        width: 195
+        height: 46
       alignment: 0
       pivot: {x: .5, y: .5}
-      border: {x: 51, y: 120, z: 201, w: 64}
+      border: {x: 11, y: 1, z: 10, w: 11}
   spritePackingTag: 
   userData: 

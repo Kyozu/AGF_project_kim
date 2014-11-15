@@ -104,6 +104,21 @@ public class AutoLogin : MonoBehaviour {
 				request.Password = password;
 				request.TitleId = PlayFabData.TitleId;
 				PlayFabClientAPI.LoginWithPlayFab(request,OnLoginResult,OnPlayFabError);
+				//PlayFabClientAPI.LinkGameCenterAccount
+
+
+		}
+
+		public void linkGameCenter(LinkGameCenterAccountResult result)
+		{
+				//LinkGameCenterAccountRequest linkrequest = new LinkGameCenterAccountRequest ();
+				//linkrequest.GameCenterId = Social.localUser.id;
+				//PlayFabClientAPI.LinkGameCenterAccount (linkrequest, linkGameCenter, OnPlayFabError);
+				//PlayFabGameBridge.gameState = 3;	// switch to playing the game; hide this dialog
+				//Time.timeScale = 1.0f;	// unpause...
+				//PlayFabData.AuthKey = result.;
+				//if(!PlayFabData.AngryBotsModActivated)Application.LoadLevel (nextScene);
+
 		}
 
 		public void OnLoginResult(LoginResult result)
@@ -125,6 +140,16 @@ public class AutoLogin : MonoBehaviour {
 				Debug.Log("TitleId : "+request.TitleId);
 				PlayFabClientAPI.LoginWithGameCenter(request,OnRegisterResult,OnPlayFabError);
 #else
+
+				LoginWithGameCenterRequest request = new LoginWithGameCenterRequest();
+				request.TitleId = TitleID;//PlayFabSettings.TitleId;
+				request.PlayerId = Social.localUser.id;
+				userName = Social.localUser.userName;
+
+				request.CreateAccount = CreateUser;
+				Debug.Log("TitleId : "+request.TitleId);
+				PlayFabClientAPI.LoginWithGameCenter(request,OnRegisterResult,OnPlayFabError);
+
 				LoginWithAndroidDeviceIDRequest requestG = new LoginWithAndroidDeviceIDRequest();
 				requestG.TitleId = TitleID;
 				requestG.OS = SystemInfo.operatingSystem;
