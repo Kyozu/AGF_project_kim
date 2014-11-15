@@ -149,7 +149,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 359320839}
+      - m_Target: {fileID: 0}
         m_MethodName: signIn
         m_Mode: 1
         m_Arguments:
@@ -190,7 +190,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 108011996}
-  m_HideIfInvisible: 0
 --- !u!1 &217881546
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,6 +250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
+  m_DragThreshold: 5
 --- !u!4 &217881550
 Transform:
   m_ObjectHideFlags: 0
@@ -344,7 +344,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 248833458}
-  m_HideIfInvisible: 0
 --- !u!1 &300116388
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,7 +408,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 300116388}
-  m_HideIfInvisible: 0
 --- !u!224 &300116392
 RectTransform:
   m_ObjectHideFlags: 0
@@ -486,14 +484,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Input
+  m_Text: 
 --- !u!222 &356066956
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 356066953}
-  m_HideIfInvisible: 0
 --- !u!1 &359320833
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,7 +504,6 @@ GameObject:
   - 124: {fileID: 359320835}
   - 81: {fileID: 359320834}
   - 114: {fileID: 359320839}
-  - 114: {fileID: 359320840}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -588,27 +584,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 359320833}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 888db6e29b39e42d69cd71a52b31b52e, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e21381da1daa4a489ab0504da7daf4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreToPost: 100
-  myText: {fileID: 835767197}
---- !u!114 &359320840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 359320833}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4688ff4468ac13141b65e2012296f00f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  password: 70617373776f7264
-  max: 2
-  offSet: 1
-  success: 
-  box: 
+  TitleID: DE16
+  console: {fileID: 1024685079}
 --- !u!1 &458968485
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,7 +664,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 359320839}
+      - m_Target: {fileID: 0}
         m_MethodName: showAchievements
         m_Mode: 1
         m_Arguments:
@@ -725,7 +705,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 458968485}
-  m_HideIfInvisible: 0
 --- !u!1 &466702068
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,7 +786,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 466702068}
-  m_HideIfInvisible: 0
 --- !u!1 &490830264
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,7 +861,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 359320839}
+      - m_Target: {fileID: 0}
         m_MethodName: showSpecificLeaderBoard
         m_Mode: 1
         m_Arguments:
@@ -924,7 +902,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 490830264}
-  m_HideIfInvisible: 0
 --- !u!1 &493671260
 GameObject:
   m_ObjectHideFlags: 0
@@ -1000,7 +977,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 359320839}
+      - m_Target: {fileID: 0}
         m_MethodName: postScore
         m_Mode: 1
         m_Arguments:
@@ -1041,7 +1018,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 493671260}
-  m_HideIfInvisible: 0
 --- !u!1 &835767195
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,7 +1084,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 835767195}
-  m_HideIfInvisible: 0
 --- !u!1 &836173032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1125,7 +1100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &836173033
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1152,6 +1127,7 @@ RectTransform:
   - {fileID: 1921554442}
   - {fileID: 1769209135}
   - {fileID: 108011997}
+  - {fileID: 1024685078}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
@@ -1190,6 +1166,7 @@ Canvas:
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
 --- !u!1 &855140547
@@ -1260,7 +1237,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 855140547}
-  m_HideIfInvisible: 0
 --- !u!1 &876702756
 GameObject:
   m_ObjectHideFlags: 0
@@ -1320,14 +1296,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Input
+  m_Text: 
 --- !u!222 &876702759
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 876702756}
-  m_HideIfInvisible: 0
 --- !u!1 &914756100
 GameObject:
   m_ObjectHideFlags: 0
@@ -1409,7 +1384,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 914756100}
-  m_HideIfInvisible: 0
 --- !u!1 &957168970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1478,7 +1452,72 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 957168970}
-  m_HideIfInvisible: 0
+--- !u!1 &1024685077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1024685078}
+  - 222: {fileID: 1024685080}
+  - 114: {fileID: 1024685079}
+  m_Layer: 5
+  m_Name: ConsoleText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1024685078
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1024685077}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 836173033}
+  m_RootOrder: 16
+  m_AnchorMin: {x: .0199999996, y: .0309110824}
+  m_AnchorMax: {x: .285291642, y: .5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: .5, y: .5}
+--- !u!114 &1024685079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1024685077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: New Text
+--- !u!222 &1024685080
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1024685077}
 --- !u!1 &1214505637
 GameObject:
   m_ObjectHideFlags: 0
@@ -1554,7 +1593,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 359320839}
+      - m_Target: {fileID: 0}
         m_MethodName: unlockAchievement
         m_Mode: 1
         m_Arguments:
@@ -1595,7 +1634,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1214505637}
-  m_HideIfInvisible: 0
 --- !u!1 &1301004731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1677,7 +1715,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1301004731}
-  m_HideIfInvisible: 0
 --- !u!1 &1330014805
 GameObject:
   m_ObjectHideFlags: 0
@@ -1759,7 +1796,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1330014805}
-  m_HideIfInvisible: 0
 --- !u!1 &1340157384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1833,19 +1869,27 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1340157387}
   m_TextComponent: {fileID: 876702758}
-  inputType: 0
-  keyboardType: 0
-  validation: 0
-  characterLimit: 0
-  multiLine: 1
-  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
-  onSubmit:
+  m_Placeholder: {fileID: 0}
+  m_ContentType: 0
+  m_InputType: 0
+  m_KeyboardType: 0
+  m_LineType: 0
+  m_HideMobileInput: 0
+  m_CharacterValidation: 0
+  m_CharacterLimit: 0
+  m_EndEdit:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  selectionColor: {r: .104999997, g: .630999982, b: .885999978, a: .300000012}
-  m_Value: 
+  m_OnValueChange:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.InputField+OnChangeEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  m_SelectionColor: {r: .104999997, g: .630999982, b: .885999978, a: .300000012}
+  m_Text: 
+  m_CaretBlinkRate: 1.70000005
 --- !u!114 &1340157387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1873,7 +1917,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1340157384}
-  m_HideIfInvisible: 0
 --- !u!1 &1630761540
 GameObject:
   m_ObjectHideFlags: 0
@@ -1949,7 +1992,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 359320839}
+      - m_Target: {fileID: 0}
         m_MethodName: signOut
         m_Mode: 1
         m_Arguments:
@@ -1990,7 +2033,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1630761540}
-  m_HideIfInvisible: 0
 --- !u!1 &1636043259
 GameObject:
   m_ObjectHideFlags: 0
@@ -2072,7 +2114,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1636043259}
-  m_HideIfInvisible: 0
 --- !u!1 &1693907613
 GameObject:
   m_ObjectHideFlags: 0
@@ -2132,14 +2173,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Input
+  m_Text: 
 --- !u!222 &1693907616
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1693907613}
-  m_HideIfInvisible: 0
 --- !u!1 &1699211453
 GameObject:
   m_ObjectHideFlags: 0
@@ -2213,19 +2253,27 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1699211456}
   m_TextComponent: {fileID: 1693907615}
-  inputType: 0
-  keyboardType: 0
-  validation: 0
-  characterLimit: 0
-  multiLine: 1
-  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
-  onSubmit:
+  m_Placeholder: {fileID: 0}
+  m_ContentType: 0
+  m_InputType: 0
+  m_KeyboardType: 0
+  m_LineType: 0
+  m_HideMobileInput: 0
+  m_CharacterValidation: 0
+  m_CharacterLimit: 0
+  m_EndEdit:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  selectionColor: {r: .104999997, g: .630999982, b: .885999978, a: .300000012}
-  m_Value: 
+  m_OnValueChange:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.InputField+OnChangeEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  m_SelectionColor: {r: .104999997, g: .630999982, b: .885999978, a: .300000012}
+  m_Text: 
+  m_CaretBlinkRate: 1.70000005
 --- !u!114 &1699211456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2253,7 +2301,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1699211453}
-  m_HideIfInvisible: 0
 --- !u!1 &1713245545
 GameObject:
   m_ObjectHideFlags: 0
@@ -2335,7 +2382,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1713245545}
-  m_HideIfInvisible: 0
 --- !u!1 &1726311476
 GameObject:
   m_ObjectHideFlags: 0
@@ -2417,7 +2463,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1726311476}
-  m_HideIfInvisible: 0
 --- !u!1 &1769209134
 GameObject:
   m_ObjectHideFlags: 0
@@ -2478,7 +2523,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1769209134}
-  m_HideIfInvisible: 0
 --- !u!1 &1797317490
 GameObject:
   m_ObjectHideFlags: 0
@@ -2554,7 +2598,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 359320839}
+      - m_Target: {fileID: 0}
         m_MethodName: signIn
         m_Mode: 1
         m_Arguments:
@@ -2595,7 +2639,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1797317490}
-  m_HideIfInvisible: 0
 --- !u!1 &1921554441
 GameObject:
   m_ObjectHideFlags: 0
@@ -2669,19 +2712,27 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1921554444}
   m_TextComponent: {fileID: 356066955}
-  inputType: 0
-  keyboardType: 0
-  validation: 0
-  characterLimit: 0
-  multiLine: 1
-  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
-  onSubmit:
+  m_Placeholder: {fileID: 0}
+  m_ContentType: 0
+  m_InputType: 0
+  m_KeyboardType: 0
+  m_LineType: 0
+  m_HideMobileInput: 0
+  m_CharacterValidation: 0
+  m_CharacterLimit: 0
+  m_EndEdit:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  selectionColor: {r: .104999997, g: .630999982, b: .885999978, a: .300000012}
-  m_Value: 
+  m_OnValueChange:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.InputField+OnChangeEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  m_SelectionColor: {r: .104999997, g: .630999982, b: .885999978, a: .300000012}
+  m_Text: 
+  m_CaretBlinkRate: 1.70000005
 --- !u!114 &1921554444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2709,7 +2760,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1921554441}
-  m_HideIfInvisible: 0
 --- !u!1 &1997280975
 GameObject:
   m_ObjectHideFlags: 0
@@ -2785,7 +2835,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 359320839}
+      - m_Target: {fileID: 0}
         m_MethodName: incrementAchievement
         m_Mode: 1
         m_Arguments:
@@ -2826,7 +2876,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1997280975}
-  m_HideIfInvisible: 0
 --- !u!1 &2007587248
 GameObject:
   m_ObjectHideFlags: 0
@@ -2902,7 +2951,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 359320839}
+      - m_Target: {fileID: 0}
         m_MethodName: showLeaderBoards
         m_Mode: 1
         m_Arguments:
@@ -2943,4 +2992,3 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2007587248}
-  m_HideIfInvisible: 0

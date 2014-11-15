@@ -56,6 +56,7 @@ PlayerSettings:
   visibleInBackground: 0
   macFullscreenMode: 2
   d3d9FullscreenMode: 1
+  d3d11ForceExclusiveMode: 0
   xboxSpeechDB: 0
   xboxEnableHeadOrientation: 0
   xboxEnableGuest: 0
@@ -93,14 +94,17 @@ PlayerSettings:
   iPhoneSplashScreen: {fileID: 0}
   iPhoneHighResSplashScreen: {fileID: 0}
   iPhoneTallHighResSplashScreen: {fileID: 0}
+  iPhone47inSplashScreen: {fileID: 0}
+  iPhone55inPortraitSplashScreen: {fileID: 0}
+  iPhone55inLandscapeSplashScreen: {fileID: 0}
   iPadPortraitSplashScreen: {fileID: 0}
   iPadHighResPortraitSplashScreen: {fileID: 0}
   iPadLandscapeSplashScreen: {fileID: 0}
   iPadHighResLandscapeSplashScreen: {fileID: 0}
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
-  AndroidKeystoreName: C:/Users/Sandra/Dropbox/Mooseball/Builds/kim.keystore
-  AndroidKeyaliasName: knock it moose
+  AndroidKeystoreName: Builds/KimKeyStore.keystore
+  AndroidKeyaliasName: kimkey
   resolutionDialogBanner: {fileID: 0}
   m_BuildTargetIcons:
   - m_BuildTarget: 
@@ -109,20 +113,32 @@ PlayerSettings:
       m_Size: 128
   - m_BuildTarget: iPhone
     m_Icons:
-    - m_Icon: {fileID: 2800000, guid: 6ce255d45bf6343e180051457fa718ef, type: 3}
+    - m_Icon: {fileID: 2800000, guid: ee12c1b37f21c4f21910c3ec50d23455, type: 3}
       m_Size: 152
-    - m_Icon: {fileID: 2800000, guid: 2499b503d0f684ef58e3d30000370e5f, type: 3}
+    - m_Icon: {fileID: 2800000, guid: c2cb311ad29534ccd8c09409ac316113, type: 3}
       m_Size: 144
-    - m_Icon: {fileID: 2800000, guid: 92e70f91e52544076bada413f788fe4a, type: 3}
+    - m_Icon: {fileID: 2800000, guid: 662eb29a5a1ef4df2a7bfe726deb9984, type: 3}
       m_Size: 120
-    - m_Icon: {fileID: 2800000, guid: 40c773282a63f423cb5f343180e85379, type: 3}
+    - m_Icon: {fileID: 2800000, guid: 31eee33b17e5c45f4a6a36e7df841387, type: 3}
       m_Size: 114
-    - m_Icon: {fileID: 2800000, guid: fa549277c017e494fa49978b323a9133, type: 3}
+    - m_Icon: {fileID: 2800000, guid: 5296770a953524783954b9a863c324a0, type: 3}
       m_Size: 76
-    - m_Icon: {fileID: 2800000, guid: b7529b9c63b5149bc82b87e5b65d3fa7, type: 3}
+    - m_Icon: {fileID: 2800000, guid: 4598cc1f4d254422597676c7979b1f19, type: 3}
       m_Size: 72
-    - m_Icon: {fileID: 2800000, guid: 937df06aea42445ae8a29cfc475930d2, type: 3}
+    - m_Icon: {fileID: 2800000, guid: c1a5ba9c690fb469f9b6ac1387a8a83a, type: 3}
       m_Size: 57
+  - m_BuildTarget: Android
+    m_Icons:
+    - m_Icon: {fileID: 2800000, guid: c2cb311ad29534ccd8c09409ac316113, type: 3}
+      m_Size: 144
+    - m_Icon: {fileID: 0}
+      m_Size: 96
+    - m_Icon: {fileID: 2800000, guid: 4598cc1f4d254422597676c7979b1f19, type: 3}
+      m_Size: 72
+    - m_Icon: {fileID: 0}
+      m_Size: 48
+    - m_Icon: {fileID: 0}
+      m_Size: 36
   m_BuildTargetBatching:
   - m_BuildTarget: iPhone
     m_StaticBatching: 1

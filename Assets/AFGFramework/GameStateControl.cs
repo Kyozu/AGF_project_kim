@@ -80,7 +80,7 @@ class PlayerData
 		public string emailId  = "guestUser@gmail.com";    			// EmailId for the user creation
 		public string password = "password";
 }
-
+/*
 [Serializable]
 class LevelModel
 {
@@ -89,4 +89,4 @@ class LevelModel
 	public uint price;
 	public bool levelBought;
 	public uint highscore;
-}
+}*/
