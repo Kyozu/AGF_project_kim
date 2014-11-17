@@ -10,6 +10,8 @@ public class BaseObjectFSM : MonoBehaviour {
 		public float walkSpeed = 3;
 
 		public Vector2 direction;
+
+
 		protected Vector3 moveToDirection = Vector3.zero;
 		protected float angle = 0;	
 
@@ -17,6 +19,14 @@ public class BaseObjectFSM : MonoBehaviour {
 		public float stopBallingSpeed = 4.0f; //the speed to stop balling
 
 		#endregion
+
+		#region Death
+
+		Vector3 deathPosition;
+
+
+		#endregion
+
 
 		#region shoot out Checks
 		float previousShoutOutSpeed = 0.0f;
@@ -203,10 +213,21 @@ public class BaseObjectFSM : MonoBehaviour {
 		IEnumerator DyingState()
 		{
 				showDebugState("Dying: Enter");
+				rigidbody2D.velocity = Vector2.zero;
 				//animation.Play ("Idle");
 				soundManager.Death.Play ();
 				while (state == MooseState.Dying)
 				{
+						if(transform.position != deathPosition)
+						{
+								float step = 10 * Time.deltaTime;
+								transform.position = Vector3.MoveTowards(transform.position, deathPosition, step);
+						}
+						else
+						{
+								state = MooseState.Dead;
+						}
+
 						yield return null;
 				}
 				showDebugState("Dying: Exit");
@@ -216,9 +237,16 @@ public class BaseObjectFSM : MonoBehaviour {
 		IEnumerator DeadState()
 		{
 				showDebugState("Dead: Enter");
+				GameManager.instance.AddGhost (deathPosition, false);
+				rigidbody2D.velocity = Vector2.zero;
 				//animation.Play ("Death");
 				while (state == MooseState.Dead)
 				{
+						//need to work out a spawner
+						PoolingSystem.DestroyAPS (this.gameObject);
+
+						//gameObject.SetActive (false);
+
 						yield return null;
 				}
 				showDebugState("Dead: Exit");
@@ -284,8 +312,7 @@ public class BaseObjectFSM : MonoBehaviour {
 
 				if (coll.gameObject.tag == "Wall")
 						soundManager.WallHit.Play ();
-
-
+						
 		}
 
 
@@ -296,6 +323,27 @@ public class BaseObjectFSM : MonoBehaviour {
 				soundManager.MooseHitMoose.Play ();
 				rigidbody2D.isKinematic = false;
 				coll.gameObject.rigidbody2D.isKinematic = false;
+
+
+		}
+
+		void OnTriggerEnter2D(Collider2D coll)
+		{
+				if (coll.name == "Pit")
+				{
+
+						Debug.Log ("entered hole");
+						deathPosition = coll.transform.position;
+						state = MooseState.Dying;
+						//
+				}
 		}
 				
+
+		void OnActive()
+		{
+				state = MooseState.Stand;
+				NextState();
+		}
 }
+

@@ -3,7 +3,7 @@
 --- !u!78 &1
 TagManager:
   tags:
-  - 
+  - Pit
   - SoundManager
   - EnemyMoose
   - 
@@ -18,8 +18,8 @@ TagManager:
   Builtin Layer 5: UI
   Builtin Layer 6: 
   Builtin Layer 7: 
-  User Layer 8: Dialog
-  User Layer 9: 
+  User Layer 8: IngnoreCollisions
+  User Layer 9: holeVsMoose
   User Layer 10: 
   User Layer 11: 
   User Layer 12: 
@@ -41,7 +41,7 @@ TagManager:
   User Layer 28: 
   User Layer 29: 
   User Layer 30: 
-  User Layer 31: 
+  User Layer 31: Dialog
   m_SortingLayers:
   - name: Default
     userID: 0

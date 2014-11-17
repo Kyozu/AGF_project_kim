@@ -82,7 +82,7 @@ public class InGameHUD : MonoBehaviour {
 								GameObject newItem = (GameObject) Instantiate(poolingItems[i].prefab);
 								newItem.SetActive(false);
 								pooledItems[i].Add(newItem);
-								newItem.transform.parent = transform;
+								newItem.transform.SetParent (transform);
 						}
 				}
 
@@ -96,16 +96,16 @@ public class InGameHUD : MonoBehaviour {
 
             Vector3 newPosition = new Vector3(position.x, position.y + positionUP, position.z);
             GameObject TextGO = InstantiateAPS("ScoreText", newPosition, Quaternion.Euler(Vector3.zero));// as GameObject;
-				TextGO.transform.parent = transform;
+				TextGO.transform.SetParent (transform);
 				Text myText = TextGO.GetComponent<Text> ();
 
 				myText.transform.localScale = new Vector3 (0.1f, 0.1f, 1f);
 				myText.text =  score.ToString();
 				myText.color = Color.black;
 				Vector3 moveupText = myText.rectTransform.position;
-				Debug.Log ("moveup " + moveupText);
+				//Debug.Log ("moveup " + moveupText);
 				Vector3 normalUPPos = new Vector3(moveupText.x, moveupText.y + positionUP, moveupText.z);
-				Debug.Log ("moveNormal " + normalUPPos);
+				//Debug.Log ("moveNormal " + normalUPPos);
 				// Tween
 				// Sequence with onComplete callback
 				Sequence seq = DOTween.Sequence()
@@ -167,7 +167,7 @@ public class InGameHUD : MonoBehaviour {
 										GameObject newItem = (GameObject) Instantiate(poolingItems[i].prefab);
 										newItem.SetActive(false);
 										pooledItems[i].Add(newItem);
-										newItem.transform.parent = transform;
+										newItem.transform.SetParent(transform);
 										return newItem;
 								}
 

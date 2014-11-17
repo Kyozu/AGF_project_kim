@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
   - 95: {fileID: 9500000}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: legFL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,10 +34,10 @@ GameObject:
   - 82: {fileID: 8200004}
   - 82: {fileID: 8200002}
   - 82: {fileID: 8200000}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SoundManager
   m_TagString: SoundManager
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -1077886335, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
@@ -51,7 +51,7 @@ GameObject:
   - 4: {fileID: 400004}
   - 95: {fileID: 9500002}
   - 212: {fileID: 21200002}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   - 212: {fileID: 21200004}
   - 95: {fileID: 9500004}
   - 114: {fileID: 11400002}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400008}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: headTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,8 +100,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 400010}
   - 58: {fileID: 5800000}
-  m_Layer: 0
-  m_Name: WallCollider
+  m_Layer: 9
+  m_Name: holeCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,7 +117,7 @@ GameObject:
   - 4: {fileID: 400012}
   - 212: {fileID: 21200006}
   - 95: {fileID: 9500006}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: legBL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - 4: {fileID: 400016}
   - 212: {fileID: 21200008}
   - 95: {fileID: 9500008}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: legBR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400018}
   - 96: {fileID: 9600000}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ GameObject:
   - 4: {fileID: 400020}
   - 132: {fileID: 13200000}
   - 114: {fileID: 11400014}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GuiTextMooseState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,7 +205,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400022}
   - 212: {fileID: 21200010}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   - 4: {fileID: 400024}
   - 212: {fileID: 21200012}
   - 95: {fileID: 9500010}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: legFR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400026}
   - 114: {fileID: 11400016}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: mooseAnimator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +337,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100014}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2}
+  m_LocalPosition: {x: -3.48000002, y: -2.27999997, z: -2}
   m_LocalScale: {x: .25, y: .25, z: .25}
   m_Children:
   - {fileID: 400020}
@@ -449,8 +449,8 @@ CircleCollider2D:
   m_GameObject: {fileID: 100010}
   m_Enabled: 1
   m_Material: {fileID: 6200000, guid: 0efaed6bf9dce5d4eadf4bbbe2151e9b, type: 2}
-  m_IsTrigger: 0
-  m_Radius: 1
+  m_IsTrigger: 1
+  m_Radius: 1.73958683
   m_Center: {x: 0, y: 0}
 --- !u!58 &5800002
 CircleCollider2D:
@@ -1269,7 +1269,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 4020432819
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: f4358e12847b14800aa3f3b3211f40c7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f2c0795989b087d4593e8bc4a7cb925c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21200002
 SpriteRenderer:
@@ -1291,7 +1291,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 2421665641
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: ffcf2a9032a094dce81fdc574d4d0346, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0f624d204e9876b4b836e6afbc523d6f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21200004
 SpriteRenderer:
@@ -1313,7 +1313,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1064280357
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 6b82eda79b428413ca330ad07de2b8fe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f01cf4129e551754b90608e1d7c48766, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21200006
 SpriteRenderer:
@@ -1335,7 +1335,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 4020432819
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: f4358e12847b14800aa3f3b3211f40c7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f2c0795989b087d4593e8bc4a7cb925c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21200008
 SpriteRenderer:
@@ -1357,7 +1357,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 4020432819
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: f4358e12847b14800aa3f3b3211f40c7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f2c0795989b087d4593e8bc4a7cb925c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21200010
 SpriteRenderer:
@@ -1379,8 +1379,8 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 3159756241
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: 204836204211b4cf78c1b6af6ef1bf03, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: .458823532}
+  m_Sprite: {fileID: 21300000, guid: 05cebc1f52ca04ceeafa55af50ad23d2, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: .470588237}
 --- !u!212 &21200012
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -1401,7 +1401,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 4020432819
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: f4358e12847b14800aa3f3b3211f40c7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f2c0795989b087d4593e8bc4a7cb925c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

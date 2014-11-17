@@ -162,7 +162,7 @@ public sealed class PoolingSystem : MonoBehaviour {
 					GameObject newItem = (GameObject) Instantiate(poolingItems[i].prefab);
 					newItem.SetActive(false);
 					pooledItems[i].Add(newItem);
-					newItem.transform.parent = transform;
+					newItem.transform.SetParent(transform);
 					return newItem;
 				}
 				

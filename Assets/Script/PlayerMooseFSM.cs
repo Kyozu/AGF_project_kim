@@ -78,30 +78,13 @@ public class PlayerMooseFSM : BaseObjectFSM {
 
 		void FixedUpdate()
 		{
-				/*
-		if(moveToDirection == Vector3.zero) return;
-		myRigidbody.velocity = moveToDirection * walkSpeed;
-		*/
-				/*
-				float speed = myRigidbody.velocity.magnitude;
-				Debug.Log("speed : " + speed);
-
-				if(this.currentState == MooseState.Charge && speed < 15.0f)
-				{
-						Debug.Log("STOP");
-						StopCoroutine("EndChargeToCharge");
-						myRigidbody.velocity = Vector3.zero;
-						currentState = MooseState.None;
-						ChangeGUITextMooseState(currentState.ToString());
-						lastSqrMag = 0;
-						currentSqrMag = 0;
-
-				}
-				*/
 		}
 
 		void Update()
 		{
+				//do not draw anything.
+				if(state == MooseState.Dying || state == MooseState.Dead || state == MooseState.Respawn) return;
+
 				if(touchActive)
 				{
 						updateArrow ();

@@ -49,6 +49,8 @@ public class EnemyMooseFSM : BaseObjectFSM {
 	// Update is called once per frame
 	void FixedUpdate () 
 		{
+				if(state == MooseState.Dying || state == MooseState.Dead || state == MooseState.Respawn) return;
+
 				if(state == MooseState.Ball || state == MooseState.ShootOut)
 				{
 						currentAttackDelay = 0f;

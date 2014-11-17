@@ -9,6 +9,27 @@ public class GameManager : MonoBehaviour
 
 		PoolingSystem pS;
 
+		public GameObject PitOject;
+		public string easyEnemy = "EnemyMoose";
+
+		public Vector3 spawnValues;
+
+		//debug
+		public bool spawn = false;
+		public Rect currentRect;
+
+		//set this
+		public RectTransform[] EnemySpawnRects;
+		//used for spawing enemies
+		Rect[] EnemySpawnRectsWorld;
+
+		//spawning holes.
+		//public RectTransform[] HoleSpawnRects;
+		//public string PitName = "Pit";
+
+
+		public RectTransform[] PlayerSpawnRects;
+
 		// To spawn the prefab as it is
 		//pS.InstantiateAPS("prefabName");
 
@@ -38,17 +59,29 @@ public class GameManager : MonoBehaviour
 			return _instance;
 		}
 	}
-
-	public void RegisterObject()//BaseObject b)
-	{
-		//int count = objects.Count;
-		//b.id = count;
-		//objects.Add(b);
-	}
+				
 
 	void Start()
 	{
-		Time.timeScale = timeScale;
+
+				EnemySpawnRectsWorld = new Rect[EnemySpawnRects.Length];
+
+				for(int i = 0; i < EnemySpawnRects.Length; i++)
+				{
+						RectTransform tempRect = EnemySpawnRects [i];
+						Vector2 rectposition = tempRect.position;
+
+						Vector3[] corners = new Vector3[4];
+
+
+						tempRect.GetWorldCorners (corners);
+
+						Rect spawnRect = new Rect(corners[0].x,corners[2].y, corners[2].x - corners[0].x, corners[0].y - corners[2].y);
+						EnemySpawnRectsWorld[i] = spawnRect;
+				}
+
+
+				Time.timeScale = timeScale;
 
 				GameCanvas = InGameHUD.Instance;
 
@@ -57,8 +90,27 @@ public class GameManager : MonoBehaviour
 						pS = PoolingSystem.Instance;
 				}
 
-				Debug.Log (pS);
+				//Debug.Log (pS);
+				//spawnHoles ();
 	}
+		/* this doesn't work as expected
+		void spawnHoles()
+		{
+				foreach(RectTransform holetrans in HoleSpawnRects)
+				{
+
+						Vector3 position = holetrans.TransformPoint(holetrans.position);
+						//position.z = -1;
+						//CircleCollider2D hole = Instantiate (PitOject) as CircleCollider2D;
+
+
+						//hole.AddComponent<CircleCollider2D>();
+						//hole.transform.position = position;
+						//hole.SetActive (false);
+						//hole.SetActive (true);
+						pS.InstantiateAPS (PitName, position, Quaternion.identity);
+				}
+		}*/
 
 	public void PauseButton()
 		{
@@ -90,6 +142,80 @@ public class GameManager : MonoBehaviour
 
 		public void AddSplosion(Vector3 position)
 		{
-				pS.InstantiateAPS ("Splosion", position, Quaternion.Euler (Vector3.zero));
+				pS.InstantiateAPS ("Splosion", position, Quaternion.identity);
 		}
+
+		public void AddGhost(Vector3 position, bool player)
+		{
+				pS.InstantiateAPS ("DeadMooseTransform", position, Quaternion.identity);
+
+				if(player)
+				{
+						//do some player shit here
+				}
+		}
+
+		void Update()
+		{
+				if(spawn)
+				{
+						SpawnWaves ();
+						spawn = false;
+				}
+		}
+
+		void SpawnWaves()
+		{
+				uint whichRect = (uint)Random.Range (0, EnemySpawnRectsWorld.Length);
+				//RectTransform Rtrans = EnemySpawnRects [whichRect];
+				Rect spawnRect = EnemySpawnRectsWorld [whichRect];
+
+				Debug.Log (spawnRect);
+
+				currentRect = spawnRect;
+				float spawnX = Random.Range (spawnRect.xMin, spawnRect.xMax);
+				float spawnY = Random.Range (spawnRect.yMax, spawnRect.yMin);
+
+				Vector3 spawnPosition = new Vector3 (spawnX, spawnY, 0);
+				//Debug.Log ("Spawn World to View pos: " + spawnPosition);
+				//spawnPosition = Camera.main.ViewportToWorldPoint(spawnPosition);
+				//Debug.Log ("Spawn View To world pos: " + spawnPosition);
+				pS.InstantiateAPS (easyEnemy, spawnPosition, Quaternion.identity);
+				//Debug.Log ("spawned?");
+
+
+		}
+		/*
+		/// <summary>
+		/// Fucking hacking to get the normal positions
+		/// </summary>
+		void OnDrawGizmos()
+		{
+				for(int i = 0; i < EnemySpawnRects.Length; i++)
+				{
+						RectTransform tempRect = EnemySpawnRects [i];
+						//Vector2 rectposition = tempRect.position;
+
+						Vector3[] corners = new Vector3[4];
+
+
+						tempRect.GetWorldCorners (corners);
+
+						Rect spawnRect = new Rect(corners[0].x,corners[2].y, corners[2].x - corners[0].x, corners[0].y - corners[2].y);
+
+						//spawnRect.
+						Vector2 topleft = new Vector2 (spawnRect.xMin, spawnRect.yMin);
+						Vector2 topRight = new Vector2 (spawnRect.xMax, spawnRect.yMin);
+						Vector2 bottomLeft = new Vector2 (spawnRect.xMin, spawnRect.yMax);
+						Vector2 bottomRight = new Vector2 (spawnRect.xMax, spawnRect.yMax);
+
+						Gizmos.DrawLine (topleft, topRight);
+						Gizmos.DrawLine (topRight, bottomRight);
+						Gizmos.DrawLine (bottomRight, bottomLeft);
+						Gizmos.DrawLine (bottomLeft, topleft);
+						//EnemySpawnRectsWorld[i] = spawnRect;
+				}
+		}
+		*/
+
 }
