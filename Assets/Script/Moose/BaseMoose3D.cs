@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BaseObjectFSM : MonoBehaviour {
+public class BaseMoose3D : MonoBehaviour {
 
-		//debug shit
 		#region debug
-		public GUIText guiTextMooseState;
+		//public GUIText guiTextMooseState;
 		public float attackForce = 800;
 		public float walkSpeed = 3;
 
@@ -33,7 +32,7 @@ public class BaseObjectFSM : MonoBehaviour {
 		public bool isPlayer = false;
 		#endregion
 
-		public enum MooseState
+		public enum MooseState3D
 		{
 				Stand = 0, //no movement
 				Walk, //walk to point
@@ -45,12 +44,12 @@ public class BaseObjectFSM : MonoBehaviour {
 				Dying, //play the dying animation
 				Dead // set to inactive and stuff like that
 
-	};
+		};
 
-		public MooseState state;
+		public MooseState3D state;
 
 
-		public MooseAnimator mooseAnimator;
+		public MooseAC3D mooseAnimator;
 		Vector3 rotateAngle;
 		public float rotationSpeed;
 		public float slowMotionRotationSpeed;
@@ -66,11 +65,11 @@ public class BaseObjectFSM : MonoBehaviour {
 		{
 				showDebugState("Stand: Enter");
 
-				rigidbody2D.velocity = Vector2.zero;
-				mooseAnimator.state = MooseAnimator.BodyState.Normal;
-				while (state == MooseState.Stand)
+				rigidbody.velocity = Vector3.zero;
+				mooseAnimator.changeState (MooseAC3D.MooseBodyState.Stand);
+				while (state == MooseState3D.Stand)
 				{
-			 	
+
 						yield return null;
 				}
 				showDebugState("Stand: Exit");
@@ -80,15 +79,13 @@ public class BaseObjectFSM : MonoBehaviour {
 		IEnumerator WalkState()
 		{
 				showDebugState("Walk: Enter");
-				mooseAnimator.Walking = true;
-				mooseAnimator.state = MooseAnimator.BodyState.Normal;
-				while (state == MooseState.Walk)
+				mooseAnimator.changeState (MooseAC3D.MooseBodyState.Walk);
+				while (state == MooseState3D.Walk)
 				{
 						//animation.Play ("Move");
 						yield return null;
 				}
 				showDebugState("Walk: Exit");
-				mooseAnimator.Walking = false;
 				NextState();
 		}
 
@@ -96,21 +93,21 @@ public class BaseObjectFSM : MonoBehaviour {
 		{
 				showDebugState("Charging: Enter");
 
-				mooseAnimator.state = MooseAnimator.BodyState.Charging;
+				mooseAnimator.changeState (MooseAC3D.MooseBodyState.Charging);
 				soundManager.Inflate.Play ();
-				while (state == MooseState.Charging)
+				while (state == MooseState3D.Charging)
 				{
-			//animation.Play ("Move");
-						float speed = rigidbody2D.velocity.magnitude;
+						//animation.Play ("Move");
+						float speed = rigidbody.velocity.magnitude;
 						if (Mathf.Abs(speed) > 0)
 						{
-								state = MooseState.Ball;
-								//rigidbody2D.velocity = Vector3.zero;
+								state = MooseState3D.Ball;
+								//rigidbody.velocity = Vector3.zero;
 						}
 						yield return null;
 				}
 				showDebugState("Charging: Exit");
-				if(state == MooseState.Ball)
+				if(state == MooseState3D.Ball)
 						soundManager.HitCharged.Play ();
 				NextState();
 		}
@@ -118,12 +115,12 @@ public class BaseObjectFSM : MonoBehaviour {
 		IEnumerator ChargedState()
 		{
 				showDebugState("Charged: Enter");
-				mooseAnimator.state = MooseAnimator.BodyState.Charged;
-				while (state == MooseState.Charged)
+				mooseAnimator.changeState (MooseAC3D.MooseBodyState.Charged);
+				while (state == MooseState3D.Charged)
 				{
-			//animation.Play ("Move");
+						//animation.Play ("Move");
 
-						float speed = rigidbody2D.velocity.magnitude;
+						float speed = rigidbody.velocity.magnitude;
 						//Debug.Log ("speed : " + speed);
 
 						//[self bodyAnimation:LARGE_BODY];
@@ -132,15 +129,15 @@ public class BaseObjectFSM : MonoBehaviour {
 
 						if (Mathf.Abs(speed) > 0)
 						{
-								state = MooseState.Ball;
-								//rigidbody2D.velocity = Vector3.zero;
+								state = MooseState3D.Ball;
+								rigidbody.velocity = Vector3.zero;
 						}
 						yield return null;
 				}
 				showDebugState("Charged: Exit");
-				if(state == MooseState.Ball)
+				if(state == MooseState3D.Ball)
 						soundManager.HitCharged.Play ();
-				else if(state == MooseState.ShootOut)
+				else if(state == MooseState3D.ShootOut)
 						soundManager.Launch.Play ();
 
 				NextState();
@@ -151,19 +148,19 @@ public class BaseObjectFSM : MonoBehaviour {
 				showDebugState("ShootOut: Enter");
 
 
-				mooseAnimator.state = MooseAnimator.BodyState.Ball;
-				while (state == MooseState.ShootOut)
+				mooseAnimator.changeState (MooseAC3D.MooseBodyState.Ball);
+				while (state == MooseState3D.ShootOut)
 				{
-						float speed = rigidbody2D.velocity.magnitude;
+						float speed = rigidbody.velocity.magnitude;
 						//Debug.Log ("speed : " + speed);
 
 						if (speed > shootOutSpeed || speed <= previousShoutOutSpeed)
 						{
-								state = MooseState.Ball;
+								state = MooseState3D.Ball;
 						}
 						else if(speed == previousShoutOutSpeed)
 						{
-								state = MooseState.Stand;
+								state = MooseState3D.Stand;
 						}
 
 						previousShoutOutSpeed = speed;
@@ -179,17 +176,17 @@ public class BaseObjectFSM : MonoBehaviour {
 		{
 
 				showDebugState("Ball: Enter");
-				mooseAnimator.state = MooseAnimator.BodyState.Ball;
-				while (state == MooseState.Ball)
+				mooseAnimator.changeState (MooseAC3D.MooseBodyState.Ball);
+				while (state == MooseState3D.Ball)
 				{
 
 
-						float speed = rigidbody2D.velocity.magnitude;
+						float speed = rigidbody.velocity.magnitude;
 
 						if (Mathf.Abs(speed) < stopBallingSpeed)
 						{
-								state = MooseState.Stand;
-								rigidbody2D.velocity = Vector2.zero;
+								state = MooseState3D.Stand;
+								rigidbody.velocity = Vector2.zero;
 						}
 
 						yield return null;
@@ -202,8 +199,8 @@ public class BaseObjectFSM : MonoBehaviour {
 		IEnumerator RespawnState()
 		{
 				showDebugState("Respawn: Enter");
-				//animation.Play ("Idle");
-				while (state == MooseState.Respawn)
+				mooseAnimator.changeState (MooseAC3D.MooseBodyState.Stand);
+				while (state == MooseState3D.Respawn)
 				{
 						yield return null;
 				}
@@ -214,11 +211,11 @@ public class BaseObjectFSM : MonoBehaviour {
 		IEnumerator DyingState()
 		{
 				showDebugState("Dying: Enter");
-				rigidbody2D.Sleep ();
-				rigidbody2D.velocity = Vector2.zero;
-				//animation.Play ("Idle");
+				rigidbody.Sleep ();
+				rigidbody.velocity = Vector3.zero;
+				mooseAnimator.changeState (MooseAC3D.MooseBodyState.Dying);
 				soundManager.Death.Play ();
-				while (state == MooseState.Dying)
+				while (state == MooseState3D.Dying)
 				{
 						if(transform.position != deathPosition)
 						{
@@ -227,7 +224,7 @@ public class BaseObjectFSM : MonoBehaviour {
 						}
 						else
 						{
-								state = MooseState.Dead;
+								state = MooseState3D.Dead;
 						}
 
 						yield return null;
@@ -241,13 +238,13 @@ public class BaseObjectFSM : MonoBehaviour {
 		{
 				showDebugState("Dead: Enter");
 				GameManager.instance.AddGhost (deathPosition, false);
-				rigidbody2D.velocity = Vector2.zero;
-				mooseAnimator.state = MooseAnimator.BodyState.Normal;
-				rigidbody2D.WakeUp ();
-				state = MooseState.Stand;
+				rigidbody.velocity = Vector2.zero;
+				mooseAnimator.changeState (MooseAC3D.MooseBodyState.Dead);
+				rigidbody.WakeUp ();
+				state = MooseState3D.Stand;
 				//animation.Play ("Death");
 
-				while (state == MooseState.Dead)
+				while (state == MooseState3D.Dead)
 				{
 						//need to work out a spawner
 						//gameObject.SetActive (false);
@@ -274,7 +271,7 @@ public class BaseObjectFSM : MonoBehaviour {
 
 				NextState();
 		}
-				
+
 
 		public void NextState () 
 		{
@@ -285,13 +282,13 @@ public class BaseObjectFSM : MonoBehaviour {
 
 		public void ChangeGUITextMooseState(string s)
 		{
-				guiTextMooseState.text = s;
+				//guiTextMooseState.text = s;
 		}
 
 		public void setCharged()
 		{
-				mooseAnimator.state = MooseAnimator.BodyState.Charged;
-				state = MooseState.Charged;
+				mooseAnimator.changeState (MooseAC3D.MooseBodyState.Charged);// = MooseAnimator.BodyState.Charged;
+				state = MooseState3D.Charged;
 		}
 
 
@@ -299,22 +296,22 @@ public class BaseObjectFSM : MonoBehaviour {
 		{
 				//Debug.Log (this.gameObject.tag);
 				//if(gameObject.tag == "EnemyMoose")
-				//		Debug.Log (debugString);
+						//Debug.Log (debugString);
 		}
 
 
 
-		public virtual void OnCollisionEnter2D(Collision2D coll)
+		public virtual void OnCollisionEnter(Collision coll)
 		{
 				//Debug.Log ("enemy hit");
 
 				if (coll.gameObject.tag == "EnemyMoose") 
 				{
 						//state = MooseState.Ball;
-						BaseObjectFSM other = coll.gameObject.GetComponent<BaseObjectFSM> ();
+						BaseMoose3D other = coll.gameObject.GetComponent<BaseMoose3D> ();
 
 
-						if (state == MooseState.Walk && other.state == MooseState.Walk)
+						if (state == MooseState3D.Walk && other.state == MooseState3D.Walk)
 								return;
 						else
 								collisionStuff (coll);
@@ -325,39 +322,38 @@ public class BaseObjectFSM : MonoBehaviour {
 
 				if (coll.gameObject.tag == "Wall")
 						soundManager.WallHit.Play ();
-						
+
 		}
 
 
-		void collisionStuff(Collision2D coll)
+		void collisionStuff(Collision coll)
 		{
-				state = MooseState.ShootOut;
+				state = MooseState3D.ShootOut;
 				GameManager.instance.AddSplosion ((Vector3)coll.contacts[0].point);
 				soundManager.MooseHitMoose.Play ();
-				rigidbody2D.isKinematic = false;
-				coll.gameObject.rigidbody2D.isKinematic = false;
+				rigidbody.isKinematic = false;
+				coll.gameObject.rigidbody.isKinematic = false;
 
 
 		}
 
-		void OnTriggerEnter2D(Collider2D coll)
+		void OnTriggerEnter(Collider coll)
 		{
 				if (coll.name == "Pit")
 				{
 
 						//Debug.Log ("entered hole");
 						deathPosition = coll.transform.position;
-						state = MooseState.Dying;
+						state = MooseState3D.Dying;
 						//
 				}
 		}
-				
+
 
 		void OnEnable() 
 		{
 				//Debug.Log ("activated");
-				state = MooseState.Stand;
-				NextState();
+				//state = MooseState3D.Stand;
+				//NextState();
 		}
 }
-

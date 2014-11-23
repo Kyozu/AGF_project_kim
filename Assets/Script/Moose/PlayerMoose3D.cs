@@ -1,25 +1,18 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.UI;
 
-
-
-public class PlayerMooseFSM : BaseObjectFSM {
-
-		//static int CHARGE_RADIUS = 40;
-		//static int CHARGE_RADIUS_SQ = CHARGE_RADIUS * CHARGE_RADIUS;
+public class PlayerMoose3D : BaseMoose3D {
 
 		public delegate void SlowMotionAction(bool Enable);
 		public static event SlowMotionAction Slowmotion;
-
-
 		public float SlowMotionSpeed = 0.2f;
 
 		//private Vector3 touchPosition = Vector3.zero;
 		private Vector2 StartPosition = Vector3.zero;
 		private Vector2 EndPosition = Vector3.zero;
 
-		public Slider Arrow;
+		public GameObject Arrow;
 
 
 		bool touchActive = false;
@@ -28,25 +21,15 @@ public class PlayerMooseFSM : BaseObjectFSM {
 		//private float moveSqrMag = 0;
 		//private float lastMoveSqrMag = 0;
 		public float distAS;
-		//private bool allowAttack = true;
-		/*
-		void OnTap(TapGesture gesture)
-		{
-				StartPosition = Camera.main.ScreenPointToRay(Input.mousePosition).GetPoint(0);
 
-		if(currentState != MooseState.None) return;
-		touchPosition = Camera.main.ScreenToWorldPoint(gesture.Position);
-		touchPosition = new Vector3(touchPosition.x, touchPosition.y, myTransform.position.z);
-		lastMoveSqrMag = Mathf.Infinity;
-		moveToDirection = (touchPosition - myTransform.position).normalized;
+		//public float attackForce;
 
-		}
-				*/
+		//bool slowMotion = false;
 
 		void OnDrag(DragGesture gesture) 
 		{
 
-				if(state == MooseState.Dying || state == MooseState.Dead || state == MooseState.Respawn) return;
+				if(state == MooseState3D.Dying || state == MooseState3D.Dead || state == MooseState3D.Respawn) return;
 
 
 
@@ -74,14 +57,11 @@ public class PlayerMooseFSM : BaseObjectFSM {
 				isPlayer = true;
 		}
 
-		void FixedUpdate()
-		{
-		}
 
 		void Update()
 		{
 				//do not draw anything.
-				if(state == MooseState.Dying || state == MooseState.Dead || state == MooseState.Respawn) return;
+				if(state == MooseState3D.Dying || state == MooseState3D.Dead || state == MooseState3D.Respawn) return;
 
 				if(touchActive)
 				{
@@ -98,7 +78,7 @@ public class PlayerMooseFSM : BaseObjectFSM {
 
 				//Debug.Log ("moose pos:" + transform.position);
 
-				if(state == MooseState.Ball)
+				if(state == MooseState3D.Ball)
 				{
 						//slowMotion
 						slowMotion = true;
@@ -111,6 +91,7 @@ public class PlayerMooseFSM : BaseObjectFSM {
 						mooseAnimator.rotateSpeed = slowMotionRotationSpeed;
 				}
 
+
 		}
 
 		void TouchMoved(Vector2 touchPosition)
@@ -122,24 +103,24 @@ public class PlayerMooseFSM : BaseObjectFSM {
 
 				if(!arrowActive)
 				{
-						Arrow.gameObject.SetActive(true);
+						Arrow.SetActive(true);
 						arrowActive = true;
 				}
 
-				if(state != MooseState.Ball)
+				if(state != MooseState3D.Ball)
 				{
-						if(state == MooseState.Stand)
+						if(state == MooseState3D.Stand)
 						{
 								//should be going into charging state;
 								//Debug.Log ("going to charging mode");
-								state = MooseState.Charging;
+								state = MooseState3D.Charging;
 								//ChangeGUITextMooseState(state.ToString());
 						}
 						//direction = (EndPosition - StartPosition).normalized;
 						Vector2 directions = (EndPosition - StartPosition).normalized;
-						angle = Mathf.Atan2 (directions.y, directions.x);// * Mathf.Rad2Deg;
+						angle = Mathf.Atan2 (directions.y, directions.x) * Mathf.Rad2Deg;
 
-						mooseAnimator.rotateToAngle (angle, true);
+						mooseAnimator.rotateToAngle (angle);
 				}
 
 				//Debug.Log ("moved");
@@ -152,7 +133,7 @@ public class PlayerMooseFSM : BaseObjectFSM {
 
 				if(arrowActive)
 				{
-						Arrow.gameObject.SetActive(false);
+						Arrow.SetActive(false);
 						arrowActive = false;
 				}
 
@@ -162,14 +143,15 @@ public class PlayerMooseFSM : BaseObjectFSM {
 						Slowmotion (slowMotion);
 				}
 				Time.timeScale = 1f;
-				mooseAnimator.rotateSpeed = rotationSpeed;
+				//mooseAnimator.rotateSpeed = rotationSpeed;
 
 
-				state = MooseState.ShootOut;
+				state = MooseState3D.ShootOut;
 				//ChangeGUITextMooseState(currentState.ToString());
-				rigidbody2D.velocity = Vector2.zero;
+				rigidbody.velocity = Vector3.zero;
 				Vector2 directions = (EndPosition - StartPosition).normalized;
-				rigidbody2D.AddForce(directions * attackForce);
+				Vector3 direction3D = new Vector3 (directions.x, 0, directions.y);
+				rigidbody.AddForce(direction3D * attackForce);
 
 				//Debug.Log ("ended");
 
@@ -177,31 +159,29 @@ public class PlayerMooseFSM : BaseObjectFSM {
 
 		void drawArrows()
 		{
-				Vector2 pointA =transform.position;
+				Vector2 directions = (EndPosition - StartPosition).normalized;
+				angle = Mathf.Atan2 (directions.y, directions.x) * Mathf.Rad2Deg;
 
-				Vector2 pointABvector = (EndPosition - StartPosition).normalized;
+				float angle3d = angle - 90;
+				if (angle3d < 0)
+						angle3d += 360;
 
-				Vector2 pointS = pointA + (pointABvector * distAS);
-
-				Vector2 directions = EndPosition - StartPosition;
-				float angleInDeg = Mathf.Atan2 (directions.y, directions.x) * Mathf.Rad2Deg;
-
-
-				//TODO: FOR SOME UNKNOWN REASON THE FUCKING DEGREES ARE REVERSED
-				Arrow.transform.position = Camera.main.WorldToScreenPoint(pointS);
-				Arrow.transform.rotation =  Quaternion.Euler(0 ,0 , angleInDeg);
+				Debug.Log ("angle: " + angle3d);
+				Arrow.transform.rotation = Quaternion.AngleAxis( -angle3d , transform.up);
 
 		}
 
 		void updateArrow()
 		{
-				Vector2 pointA =transform.position;
+				Vector2 directions = (EndPosition - StartPosition).normalized;
+				angle = Mathf.Atan2 (directions.y, directions.x) * Mathf.Rad2Deg;
 
-				Vector2 pointABvector = (EndPosition - StartPosition).normalized;
+				float angle3d = angle - 90;
+				if (angle3d < 0)
+						angle3d += 360;
 
-				Vector2 pointS = pointA + (pointABvector * distAS); 
-
-				Arrow.transform.position = Camera.main.WorldToScreenPoint(pointS);
+				Debug.Log ("angle: " + angle3d);
+				Arrow.transform.rotation = Quaternion.AngleAxis( -angle3d , transform.up);
 
 		}
 }

@@ -26,9 +26,10 @@ public class GameManager : MonoBehaviour
 		//spawning holes.
 		//public RectTransform[] HoleSpawnRects;
 		//public string PitName = "Pit";
-
-
+		public GameObject Player;
 		public RectTransform[] PlayerSpawnRects;
+		//used for spawing enemies
+		Rect[] PlayerSpawnRectsWorld;
 
 		// To spawn the prefab as it is
 		//pS.InstantiateAPS("prefabName");
@@ -38,7 +39,10 @@ public class GameManager : MonoBehaviour
 
 		// Same as above, also makes the spawned prefab a child of "parent" gameobject
 		//pS.InstantiateAPS("prefabName", _position, _rotation, parent);
-
+		public int hazardCount;
+		public float spawnWait;
+		public float startWait;
+		public float waveWait;
 
 	public float timeScale = 1;
 
@@ -80,6 +84,22 @@ public class GameManager : MonoBehaviour
 						EnemySpawnRectsWorld[i] = spawnRect;
 				}
 
+				PlayerSpawnRectsWorld = new Rect[PlayerSpawnRects.Length];
+
+				for(int i = 0; i < PlayerSpawnRects.Length; i++)
+				{
+						RectTransform tempRect = PlayerSpawnRects [i];
+						Vector2 rectposition = tempRect.position;
+
+						Vector3[] corners = new Vector3[4];
+
+
+						tempRect.GetWorldCorners (corners);
+
+						Rect spawnRect = new Rect(corners[0].x,corners[2].y, corners[2].x - corners[0].x, corners[0].y - corners[2].y);
+						PlayerSpawnRectsWorld[i] = spawnRect;
+				}
+
 
 				Time.timeScale = timeScale;
 
@@ -89,7 +109,8 @@ public class GameManager : MonoBehaviour
 				{
 						pS = PoolingSystem.Instance;
 				}
-
+				spawnPlayer ();
+				StartCoroutine (SpawnWaves ());
 				//Debug.Log (pS);
 				//spawnHoles ();
 	}
@@ -163,14 +184,43 @@ public class GameManager : MonoBehaviour
 						spawn = false;
 				}
 		}
-
-		void SpawnWaves()
+				
+		IEnumerator SpawnWaves ()
 		{
-				uint whichRect = (uint)Random.Range (0, EnemySpawnRectsWorld.Length);
-				//RectTransform Rtrans = EnemySpawnRects [whichRect];
-				Rect spawnRect = EnemySpawnRectsWorld [whichRect];
+				yield return new WaitForSeconds (startWait);
+				while (true)
+				{
+						for (int i = 0; i < hazardCount; i++)
+						{
+								uint whichRect = (uint)Random.Range (0, EnemySpawnRectsWorld.Length);
+								//RectTransform Rtrans = EnemySpawnRects [whichRect];
+								Rect spawnRect = EnemySpawnRectsWorld [whichRect];
 
-				Debug.Log (spawnRect);
+								//Debug.Log (spawnRect);
+
+								currentRect = spawnRect;
+								float spawnX = Random.Range (spawnRect.xMin, spawnRect.xMax);
+								float spawnY = Random.Range (spawnRect.yMax, spawnRect.yMin);
+
+								Vector3 spawnPosition = new Vector3 (spawnX, spawnY, 0);
+								//Debug.Log ("Spawn World to View pos: " + spawnPosition);
+								//spawnPosition = Camera.main.ViewportToWorldPoint(spawnPosition);
+								//Debug.Log ("Spawn View To world pos: " + spawnPosition);
+								pS.InstantiateAPS (easyEnemy, spawnPosition, Quaternion.identity);
+								yield return new WaitForSeconds (spawnWait);
+						}
+						yield return new WaitForSeconds (waveWait);
+				}
+		}
+
+
+		public void spawnPlayer()
+		{
+				uint whichRect = (uint)Random.Range (0, PlayerSpawnRectsWorld.Length);
+				//RectTransform Rtrans = EnemySpawnRects [whichRect];
+				Rect spawnRect = PlayerSpawnRectsWorld [whichRect];
+
+				//Debug.Log (spawnRect);
 
 				currentRect = spawnRect;
 				float spawnX = Random.Range (spawnRect.xMin, spawnRect.xMax);
@@ -180,10 +230,9 @@ public class GameManager : MonoBehaviour
 				//Debug.Log ("Spawn World to View pos: " + spawnPosition);
 				//spawnPosition = Camera.main.ViewportToWorldPoint(spawnPosition);
 				//Debug.Log ("Spawn View To world pos: " + spawnPosition);
-				pS.InstantiateAPS (easyEnemy, spawnPosition, Quaternion.identity);
-				//Debug.Log ("spawned?");
+				Player.transform.position = spawnPosition;
 
-
+				//pS.InstantiateAPS (Player, spawnPosition, Quaternion.identity);
 		}
 		/*
 		/// <summary>
