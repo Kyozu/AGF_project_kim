@@ -147,7 +147,7 @@ public class MooseAC3D : MonoBehaviour {
 				if (angle3d < 0)
 						angle3d += 360;
 
-				Debug.Log ("angle: " + angle3d);
+				//Debug.Log ("angle: " + angle3d);
 				transform.rotation = Quaternion.Euler(0, -angle3d , 0);
 
 		}

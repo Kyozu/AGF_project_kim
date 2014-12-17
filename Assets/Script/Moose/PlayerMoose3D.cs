@@ -166,7 +166,7 @@ public class PlayerMoose3D : BaseMoose3D {
 				if (angle3d < 0)
 						angle3d += 360;
 
-				Debug.Log ("angle: " + angle3d);
+				//Debug.Log ("angle: " + angle3d);
 				Arrow.transform.rotation = Quaternion.AngleAxis( -angle3d , transform.up);
 
 		}
@@ -180,7 +180,7 @@ public class PlayerMoose3D : BaseMoose3D {
 				if (angle3d < 0)
 						angle3d += 360;
 
-				Debug.Log ("angle: " + angle3d);
+				//Debug.Log ("angle: " + angle3d);
 				Arrow.transform.rotation = Quaternion.AngleAxis( -angle3d , transform.up);
 
 		}
