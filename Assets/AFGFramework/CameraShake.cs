@@ -8,7 +8,7 @@ public class CameraShake : MonoBehaviour
 		public float speed = 1.0f;
 		public float magnitude = 0.1f;
 
-		Vector3 originalCameraPosition;
+		public Vector3 originalCameraPosition;
 
 		float shakeAmt = 0;
 
@@ -47,7 +47,7 @@ public class CameraShake : MonoBehaviour
 
 						float percentComplete = elapsed / duration;			
 
-						float damper = 1.0f - Mathf.Clamp(1.5f * percentComplete - 1.0f, 0.0f, 1.0f);
+						float damper = 1.0f - Mathf.Clamp(1.5f * percentComplete - 1.0f, 1.0f, 1.0f);
 						float alpha = randomStart + speed * percentComplete;
 
 						float x = Mathf.PerlinNoise(alpha, 0.0f) * 2.0f - 1.0f;
@@ -68,12 +68,12 @@ public class CameraShake : MonoBehaviour
 
 
 
-		void OnCollisionEnter2D(Collision2D coll) 
+		void OnCollisionEnter(Collision coll) 
 		{
 				magnitude = coll.relativeVelocity.magnitude * .025f;
 				PlayShake ();
 				//shakeAmt = coll.relativeVelocity.magnitude * .0025f;
-				//InvokeRepeating("CameraShakes", 0, .01f);
+				//InvokeRepeating("CameraShakes", 0, .0S1f);
 				//Invoke("StopShaking", 0.3f);
 
 		}
